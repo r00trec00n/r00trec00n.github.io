@@ -493,13 +493,13 @@ Although the service was not externally accessible, local users could interact w
 Reviewing the source code revealed an insecure implementation inside the `template()` function.
 
 The application attempted to generate formatted messages using a Python f-string:
-
+{% raw %}
 ```python
 template = f"Patient {first} {last} ({gender}), {{datetime.now().year - year_of_birth}} years old, received from {sender} at {ts}"
 
 return eval(f"f'''{template}'''")
 ```
-
+{% endraw %}
 The use of `eval()` on user-controlled input introduced a critical **Python Expression Injection** vulnerability.
 
 ### Root Cause Analysis
