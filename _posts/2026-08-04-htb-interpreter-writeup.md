@@ -18,9 +18,7 @@ tags:
   - python
   - eval-injection
 
-image:
-  path: /assets/img/writeups/interpreter/banner.png
-  alt: HTB Interpreter Writeup
+author: Rehan
 
 mermaid: true
 ---
@@ -128,7 +126,7 @@ flowchart TD
 
 ---
 
-## 4. Reconnaissance 
+## 4. Reconnaissance
 
 ### Objective
 
