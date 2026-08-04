@@ -83,21 +83,14 @@ Every update pushed to the repository automatically rebuilds and publishes the l
 
 ## Acknowledgements
 
-This website is built using the excellent 
-<a href="https://github.com/cotes2020/chirpy-starter" target="_blank" rel="noopener noreferrer">
-Chirpy Starter
-</a>
-powered by the 
-<a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener noreferrer">
-Chirpy Jekyll Theme
-</a>.
+This website is built using the excellent [Chirpy Starter](https://github.com/cotes2020/chirpy-starter) powered by the [Chirpy Jekyll Theme](https://github.com/cotes2020/jekyll-theme-chirpy).
 
 Special thanks to the Chirpy contributors for creating a clean, fast, and feature-rich Jekyll framework that makes building technical blogs and documentation websites easier.
 
 ## Contact
 
-- <a href="https://github.com/r00trec00n" target="_blank" rel="noopener noreferrer">GitHub</a>
-- <a href="https://www.linkedin.com/in/rehanfaisal-cyber" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+- [GitHub](https://github.com/r00trec00n)
+- [LinkedIn](https://www.linkedin.com/in/rehanfaisal-cyber)
 
 ---
 
