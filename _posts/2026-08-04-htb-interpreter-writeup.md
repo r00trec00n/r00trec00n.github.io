@@ -18,7 +18,9 @@ tags:
   - python
   - eval-injection
 
-author: Rehan
+image:
+  path: /assets/img/writeups/interpreter/banner.png
+  alt: HTB Interpreter Writeup
 
 mermaid: true
 ---
