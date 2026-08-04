@@ -128,7 +128,7 @@ flowchart TD
 
 ---
 
-## 4. Reconnaissance
+## 4. Reconnaissance 
 
 ### Objective
 
