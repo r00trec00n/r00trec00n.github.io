@@ -81,6 +81,14 @@ Every update pushed to the repository automatically rebuilds and publishes the l
 
 ---
 
+## Acknowledgements
+
+This website is built using the excellent **Chirpy Jekyll Theme** by :contentReference[oaicite:0]{index=0}.
+
+Special thanks to the Chirpy contributors for creating a clean, fast, and feature-rich Jekyll theme that makes building technical blogs and documentation websites easier.
+
+---
+
 ## Contact
 
 - GitHub: https://github.com/r00trec00n
