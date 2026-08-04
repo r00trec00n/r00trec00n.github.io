@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "_posts/2026-08-04-welcome.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "2026-08-04-welcome"
             }
           }
         ]
@@ -190,29 +190,31 @@
   },
   "active": "e8afccadb5820fed",
   "lastOpenFiles": [
+    "README.md",
+    "_site/posts/welcome/index.html",
+    "_site/posts/welcome",
+    "_site/posts",
+    "_site/categories/setup/index.html",
+    "_site/categories/setup",
+    "_site/categories/labs/index.html",
+    "_site/categories/labs",
+    "_site/tags/obsidian/index.html",
+    "_site/tags/obsidian",
+    "_site/tags/jekyll/index.html",
+    "_posts/First Post.md",
+    "_posts/2026-08-04-welcome.md",
     "_site/assets/img/favicons/favicon-32x32.png",
     "_site/assets/img/favicons/favicon-16x16.png",
     "_site/assets/img/favicons/android-chrome-512x512.png",
     "_site/assets/img/favicons/android-chrome-192x192.png",
     "assets/img/favicons/favicon-32x32.png",
     "assets/img/favicons/favicon-16x16.png",
-    "assets/img/favicons/favicon.ico",
     "assets/img/favicons/apple-touch-icon.png",
     "assets/img/favicons/android-chrome-512x512.png",
     "assets/img/favicons/android-chrome-192x192.png",
-    "assets/img/favicons",
-    "_site/assets/img/favicon.ico",
-    "assets/img/favicon.ico",
     "_site/assets/img/favicon.png",
-    "assets/img/favicon.png",
     "_posts/placeholder.md",
     "_site/about/placeholder.md",
-    "_posts/placeholder",
-    "_site/assets/js/dist/theme.min.js",
-    "_site/assets/js/dist/post.min.js",
-    "_site/assets/js/dist/page.min.js",
-    "_site/assets/js/dist/home.min.js",
-    "_site/assets/js/dist/misc.min.js",
     "_tabs/about.md"
   ]
 }

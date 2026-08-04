@@ -19,7 +19,7 @@ title: r00trec00n # the main title
 tagline: Cyber Security Student | Offensive Security | CEH v13 # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-    Cyber Security student and Offensive Security enthusiast focused on penetration testing, Active Directory, Windows privilege escalation, web application security, and Capture The Flag challenges. This blog documents my learning journey, HTB writeups, and preparation for the Hack The Box CPTS certification.
+    A collection of cybersecurity writeups, tutorials, and practical notes covering penetration testing, Active Directory, and web application security.
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
 url: "https://r00trec00n.github.io"
