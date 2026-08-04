@@ -4,149 +4,132 @@ icon: fas fa-info-circle
 order: 4
 title: About Me
 title2: Rehan Faisal - Cyber Security
-summary: Cyber Security blog covering penetration testing, Hack The Box writeups, CTF challenges, security research and technical experiments
-keywords: cybersecurity,pentesting,ethical hacking,hackthebox,ctf,infosec,web security,ics security
+summary: Personal cybersecurity portfolio featuring penetration testing, Hack The Box writeups, CTFs, and technical notes.
+keywords: cybersecurity,pentesting,hackthebox,ctf,web security,ics,ot-security,cpts
 thumbnail: /assets/img/Pfp-nobg.png
 ---
 
-<!-- Add this tiny style block right above or below the image -->
 <style>
   .profile-hover-avatar {
-    /* Subtle initial white glow outlining your silhouette */
     filter: drop-shadow(0 8px 12px rgba(255, 255, 255, 0.09));
-    /* Ensures the lift and glow transition smoothly over 0.3 seconds */
     transition: transform 0.3s ease, filter 0.3s ease;
     cursor: pointer;
   }
 
   .profile-hover-avatar:hover {
-    /* Lifts the image up by 6 pixels */
     transform: translateY(-6px);
-    /* Amplifies the glow effect when hovered */
     filter: drop-shadow(0 12px 20px rgba(255, 255, 255, 0.2));
   }
 </style>
+
 <div class="text-center my-4">
-  <img src="/assets/img/Pfp-nobg.png" 
-       alt="Rehan Faisal" 
-       class="img-fluid profile-hover-avatar" 
+  <img src="/assets/img/Pfp-nobg.png"
+       alt="Rehan Faisal"
+       class="img-fluid profile-hover-avatar"
        style="width: 220px; height: 220px; object-fit: cover;">
 </div>
 
 ## Who am I?
 
-My name is **Rehan Faisal**, a Cyber Security graduate from **Air University, Islamabad** with a strong interest in understanding how systems can be attacked, analyzed, and secured.
+My name is **Rehan Faisal**, a Cyber Security graduate from **Air University, Islamabad** with a passion for offensive security, penetration testing, and Industrial Control Systems (ICS/OT) security.
 
-My journey in cybersecurity started with curiosity about how technology works and how vulnerabilities appear in real-world systems. Over time, this curiosity evolved into hands-on learning through security labs, CTF competitions, and practical security research.
-
-I enjoy exploring offensive security techniques, finding weaknesses in applications, and understanding awdatacker methodologies to build better defenses.
+I enjoy understanding how systems work, identifying security weaknesses, and continuously improving my skills through practical learning, hands-on labs, and real-world challenges.
 
 ---
 
-## My Cybersecurity Journey
+## Experience
 
-During my academic journey, I developed a strong foundation in:
+My professional journey began at **Securly**, where I started as a **Data Science Intern**. During my internship, I worked with data processing and automation, gaining practical experience in solving real-world problems.
 
-- Network Security
-- Ethical Hacking
-- Secure Programming
-- Vulnerability Assessment
-- System Security
-- Embedded Security
+Afterward, I joined **Securly** as a **Developer**, where I spent **one year** developing **web scraping, browser automation, and workflow automation** solutions using Python and related technologies.
 
-I have continued improving my practical skills through platforms like **Hack The Box**, where I actively solve machines and follow structured learning paths through **HTB Academy**.
-
-Hands-on practice has helped me strengthen my skills in:
-
-- Reconnaissance and Enumeration
-- Web Application Security
-- Exploitation Techniques
-- Privilege Escalation
-- Vulnerability Analysis
+I am currently working as a **Software Security Testing Intern** at **PKCERT**, where I am gaining practical experience in software security testing and application security.
 
 ---
 
 ## Certifications & Learning
 
-I have completed:
+### Certifications
 
-- **Certified Ethical Hacker (CEH v13)**
-- **OPSWAT OT Security Expert (OOSE)**
-- **Google Cybersecurity Specialization**
-- **Google IT Automation with Python Specialization**
+- Certified Ethical Hacker (CEH v13)
+- OPSWAT OT Security Expert (OOSE)
+- Google Cybersecurity Professional Certificate
+- Google IT Automation with Python Professional Certificate
 
-Currently, I continue expanding my knowledge through:
+### Continuous Learning
 
-- Hack The Box machines
-- HTB Academy modules
+I actively improve my skills through:
+
+- Hack The Box
+- HTB Academy (CPTS Path)
 - Capture The Flag competitions
-- Security research and experimentation
+- Practical penetration testing labs
 
 ---
 
-## Projects & Research
+## Technical Interests
+
+My primary areas of interest include:
+
+- Penetration Testing
+- Web Application Security
+- Vulnerability Assessment
+- Red Teaming
+- Industrial Control Systems (ICS) Security
+- Operational Technology (OT) Security
+- Security Automation
+
+---
+
+## Featured Project
 
 ### Securing Serial Communication in Industrial Control Systems (ICS)
 
-My Final Year Project focused on improving the security of serial communication between industrial devices.
+My Final Year Project focused on improving the security of serial communication between industrial devices by reducing the risk of eavesdropping and unauthorized access.
 
-The project explores secure communication techniques to reduce the risk of eavesdropping and unauthorized access in industrial environments.
-
-Technologies involved:
+**Technologies**
 
 - C/C++
 - C#
 - Arduino
-- Embedded communication
-- Cryptographic concepts
+- Embedded Systems
+- Cryptographic Concepts
 
 ---
 
-## What You Will Find Here
+## What You'll Find Here
 
-This blog is my personal cybersecurity notebook where I document:
+This website documents my cybersecurity journey through:
 
 - Hack The Box writeups
-- CTF solutions
-- Penetration testing notes
-- Vulnerability research
+- CPTS learning notes
+- Capture The Flag writeups
+- Penetration testing methodologies
 - Security tools and techniques
-- Technical experiments
+- Personal projects and technical notes
 
-The goal of this blog is to document my learning process, share knowledge, and create a reference for my future self.
+The purpose of this website is to document my progress, organize my knowledge, and build a portfolio that reflects my practical experience in cybersecurity.
 
 ---
-
-## Beyond Security
-
-I believe cybersecurity is a continuous learning journey. Every vulnerability discovered, every machine solved, and every challenge completed is another step toward becoming a better security professional.
-
-Thanks for visiting my lab. 🚀
 
 ## Let's Connect
 
-I am always interested in cybersecurity research, collaboration, and opportunities to improve my skills.
+I'm always open to connecting with fellow learners, security professionals, and anyone interested in cybersecurity.
 
 <div align="center">
 
-<!-- Official GitHub Solid Button -->
-<a href="https://github.com/r00trec00n" 
-   class="btn" 
+<a href="https://github.com/r00trec00n"
+   class="btn"
    target="_blank"
-   style="background-color: #24292e; color: #ffffff !important; border: 1px solid #444c56; padding: 6px 12px; display: inline-flex; align-items: center; gap: 8px; font-weight: 500; border-radius: 6px; text-decoration: none; transition: background-color 0.2s;"
-   onmouseover="this.style.backgroundColor='#2f363d';" 
-   onmouseout="this.style.backgroundColor='#24292e';">
-   <i class="fab fa-github" style="color: #ffffff !important;"></i> GitHub
+   style="background-color: #24292e; color: #ffffff !important; border: 1px solid #444c56; padding: 6px 12px; display: inline-flex; align-items: center; gap: 8px; font-weight: 500; border-radius: 6px; text-decoration: none;">
+   <i class="fab fa-github"></i> GitHub
 </a>
 
-<!-- Official LinkedIn Solid Button -->
-<a href="https://www.linkedin.com/in/rehanfaisal-cyber" 
-   class="btn" 
+<a href="https://www.linkedin.com/in/rehanfaisal-cyber"
+   class="btn"
    target="_blank"
-   style="background-color: #0a66c2; color: #ffffff !important; border: 1px solid transparent; padding: 6px 12px; display: inline-flex; align-items: center; gap: 8px; font-weight: 500; border-radius: 6px; text-decoration: none; transition: background-color 0.2s;"
-   onmouseover="this.style.backgroundColor='#004182';" 
-   onmouseout="this.style.backgroundColor='#0a66c2';">
-   <i class="fab fa-linkedin" style="color: #ffffff !important;"></i> LinkedIn
+   style="background-color: #0a66c2; color: #ffffff !important; border: 1px solid transparent; padding: 6px 12px; display: inline-flex; align-items: center; gap: 8px; font-weight: 500; border-radius: 6px; text-decoration: none;">
+   <i class="fab fa-linkedin"></i> LinkedIn
 </a>
 
 </div>

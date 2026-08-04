@@ -39,10 +39,10 @@ social:
   links:
     # The first element serves as the copyright owner's link
     # - https://twitter.com/username # change to your Twitter homepage
+    - https://www.linkedin.com/in/rehanfaisal-cyber
     - https://github.com/r00trec00n # change to your GitHub homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    - https://www.linkedin.com/in/rehanfaisal-cyber
 
 # Site Verification Settings
 webmaster_verifications:
