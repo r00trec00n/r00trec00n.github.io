@@ -1,39 +1,91 @@
-# Chirpy Starter
+# Rehan Faisal | Cybersecurity Portfolio
 
-[![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy)][gem]&nbsp;
-[![GitHub license](https://img.shields.io/github/license/cotes2020/chirpy-starter.svg?color=blue)][mit]
+Welcome to my personal cybersecurity portfolio built with **Jekyll** and the **Chirpy theme**.
 
-A minimal, ready-to-use template for creating a blog with the [**Chirpy**][chirpy] Jekyll theme. Get up and running in minutes with all critical files pre-configured.
+This website is my platform for documenting my cybersecurity learning journey, technical notes, and practical experiences in offensive security.
 
-## Why This Starter Exists
+---
 
-When installing Chirpy through [RubyGems.org][gem], Jekyll can only read a subset of theme files (`_data`, `_layouts`, `_includes`, `_sass`, `assets`) and limited `_config.yml` options from the gem. As a result, users cannot enjoy the full out-of-the-box experience that Chirpy offers.
+## About This Website
 
-To unlock all features, the following files must be present in your Jekyll site:
+This portfolio contains my work and learning progress in areas including:
 
-```shell
+- Penetration Testing
+- Hack The Box walkthroughs
+- CPTS learning journey
+- Capture The Flag writeups
+- Web Application Security
+- Vulnerability Assessment
+- Security Tools and Techniques
+- ICS/OT Security concepts
+
+The goal of this website is to document my progress, organize my knowledge, and share practical cybersecurity experiences.
+
+---
+
+## Learning & Practice
+
+I actively improve my skills through:
+
+- Hack The Box machines
+- HTB Academy learning paths
+- Capture The Flag competitions
+- Practical security labs
+- Personal projects and experiments
+
+---
+
+## Technologies Used
+
+This website is built using:
+
+- Jekyll
+- Chirpy Jekyll Theme
+- Markdown
+- GitHub Pages
+
+---
+
+## About Me
+
+I am a **Cyber Security graduate from Air University, Islamabad** with interests in:
+
+- Offensive Security
+- Penetration Testing
+- Web Security
+- Secure Development
+- Industrial Control Systems (ICS/OT) Security
+
+I have professional experience as a Developer, working on web scraping and automation solutions, and I am currently gaining experience in Software Security Testing.
+
+---
+
+## Repository Structure
+
+```text
 .
-├── _config.yml
-├── _plugins
-├── _tabs
-└── index.html
+├── _posts        # Blog posts and writeups
+├── _tabs         # Website pages
+├── assets        # Images and static files
+├── _config.yml   # Jekyll configuration
+└── README.md
 ```
 
-This starter bundles those files from the latest **Chirpy** release along with a [CD][CD] workflow, so you can start writing immediately.
+---
 
-## Usage
+## Deployment
 
-Check out the [theme's docs](https://github.com/cotes2020/jekyll-theme-chirpy/wiki).
+The website is deployed using **GitHub Pages** with Jekyll.
 
-## Contributing
+Every update pushed to the repository automatically rebuilds and publishes the latest version.
 
-This repository is automatically updated with new releases from the theme repository. If you encounter any issues or want to contribute to its improvement, please visit the [theme repository][chirpy] to provide feedback.
+---
 
-## License
+## Contact
 
-This work is published under [MIT][mit] License.
+- GitHub: https://github.com/r00trec00n
+- LinkedIn: https://www.linkedin.com/in/rehanfaisal-cyber
 
-[gem]: https://rubygems.org/gems/jekyll-theme-chirpy
-[chirpy]: https://github.com/cotes2020/jekyll-theme-chirpy/
-[CD]: https://en.wikipedia.org/wiki/Continuous_deployment
-[mit]: https://github.com/cotes2020/chirpy-starter/blob/master/LICENSE
+---
+
+© 2026 Rehan Faisal. All rights reserved.
