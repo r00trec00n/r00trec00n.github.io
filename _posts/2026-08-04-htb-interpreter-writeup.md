@@ -8,7 +8,7 @@ categories:
   - Medium
 
 tags:
-  - HTB-Medium
+  - HTB-Linux-Medium
   - htb
   - cve
   - rce
