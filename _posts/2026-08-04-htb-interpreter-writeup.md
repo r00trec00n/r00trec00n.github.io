@@ -406,7 +406,7 @@ The service was bound to:
 ### **Source Code Review**
 
 `notify.py`
-
+{% raw %}
 ```python
 #!/usr/bin/env python3
 """
@@ -465,6 +465,7 @@ def receive():
 if __name__=="__main__":
     app.run("127.0.0.1",54321, threaded=True)
 ```
+{% endraw %}
 
 ### Application Analysis
 
