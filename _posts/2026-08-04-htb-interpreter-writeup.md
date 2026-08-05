@@ -616,7 +616,7 @@ The notification service used `eval()` to process user-controlled input, resulti
 - Implement strict input validation.
 - Run services with the minimum required privileges.
 
-### v. Privileged Service Misconfiguration
+### vii. Privileged Service Misconfiguration
 
 **Issue:**
 
