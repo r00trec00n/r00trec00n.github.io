@@ -1,5 +1,7 @@
 ---
-title: "HTB Orion: CraftCMS RCE to Telnet Privilege Escalation"
+title: "HTB Orion Writeup: CraftCMS RCE to Telnet Privilege Escalation"
+
+title_post: "HTB Orion Writeup: CraftCMS RCE to Telnet Privilege Escalation"
 
 date: 2026-08-05 16:00:00 +0500
 

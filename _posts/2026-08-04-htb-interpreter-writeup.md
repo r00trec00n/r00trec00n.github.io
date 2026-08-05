@@ -1,6 +1,8 @@
 ---
-title: "HTB Interpreter Walkthrough: CVE-2023-43208 & Root Privilege Escalation"
-title_post: "Hack The Box Interpreter Writeup | Mirth Connect RCE to Root"
+title: "Hack The Box Interpreter Walkthrough | Mirth Connect RCE to Root"
+
+title_post: "Hack The Box Interpreter Walkthrough | Mirth Connect RCE to Root"
+
 date: 2026-08-04 16:30:00 +0500
 
 categories:
