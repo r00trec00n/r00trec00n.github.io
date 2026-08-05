@@ -20,14 +20,14 @@ tags:
   - cve-2025-32432
   - cve-2026-24061
 image:
-  path: https://cdn.services-k8s.prod.aws.htb.systems/content/machines/avatar/a217731f-ce7c-4015-ba0f-d68c7f6f7215-1782215994.png
+  path: /assets/img/writeups/orion/banner.png
   alt: HTB Orion Writeup
 
 mermaid: true
 ---
 
 
-## Machine Information
+## 1. Machine Information
 
 | Machine | Orion |
 |---------|-------|
@@ -37,26 +37,29 @@ mermaid: true
 | Initial Access | CraftCMS RCE |
 | Privilege Escalation | Telnet Authentication Bypass |
 
-## Attack Path
+## 2. Attack Path
 
-```mermaid
-flowchart TD
-    A[CraftCMS 5.6.1] -->|CVE-2025-32432| B[Remote Code Execution]
-    B --> C[Environment Variable Disclosure]
-    C --> D[Database Credential Recovery]
-    D --> E[bcrypt Hash Extraction]
-    E --> F[Password Cracking]
-    F --> G[SSH Access as adam]
-    G --> H[Local Telnet Discovery]
-    H -->|CVE-2026-24061| I[Telnet Authentication Bypass]
-    I --> J[Root Access]
+```
+CraftCMS RCE
+      ↓
+Environment Variable Disclosure
+      ↓
+Database Credential Extraction
+      ↓
+Password Cracking
+      ↓
+SSH Access (adam)
+      ↓
+Telnet Authentication Bypass
+      ↓
+Root Access
 ```
 
-## Overview
+## 3. Overview
 
 Orion is a Linux machine that focuses on web exploitation and local privilege escalation. The initial foothold was obtained by exploiting a vulnerable CraftCMS installation, followed by credential extraction and a Telnet authentication bypass vulnerability for root access.
 
-## Reconnaissance
+## 4. Reconnaissance
 
 Initial Nmap scan revealed two open services:
 
@@ -84,7 +87,7 @@ The enumeration revealed an administrative endpoint: `/admin`
 > - Target hostname: orion.htb
 {: .prompt-info }
 
-## CraftCMS Enumeration
+## 5. CraftCMS Enumeration
 
 The discovered `/admin` endpoint exposed the CraftCMS administrative login interface.
 
@@ -97,9 +100,9 @@ Searching for known vulnerabilities identified: `CVE-2025-32432 - CraftCMS Remot
 
 The vulnerability affects CraftCMS versions due to insecure handling of asset transform requests, allowing unauthenticated remote code execution.
 
-## Initial Shell
+## 6. Initial Shell
 
-### Exploit Development
+### i. Exploit Development
 
 A public Proof-of-Concept (PoC) was available on GitHub:
 
@@ -185,11 +188,11 @@ OLDPWD=/var/www/html/craft
 > ```
 {: .prompt-warning }
 
-## Extracting User Credentials
+## 7. Extracting User Credentials
 
 With the database credentials (root:SuperSecureCraft123Pass!) recovered from the environment variables, the next step was to access the local MariaDB instance to look for user accounts and password hashes.
 
-### Database Enumeration
+### i. Database Enumeration
 
 I authenticated to the database locally and listed the available databases to find the main application data store:
 ```bash
@@ -234,7 +237,7 @@ MariaDB [orion]> show tables;
 66 rows in set (0.000 sec)
 ```
 
-### User Hash Extraction
+### ii. User Hash Extraction
 
 I queried the users table to extract accounts credentials.
 
@@ -253,7 +256,7 @@ MariaDB [orion]> SELECT username, email, password FROM users;
 1 row in set (0.000 sec)
 ```
 
-### Password Recovery
+### iii. Password Recovery
 
 To identify the encryption type used on the string, I ran the hash through hashid. The tool identified it as a bcrypt / Blowfish algorithm, which corresponds to Hashcat mode 3200.
 
@@ -287,7 +290,7 @@ $2y$13$e9zuohgFZzGtbQalcn9Mz.5PJbjxobO0GMbXo8NHp3P/B42LUg0lS:darkangel
 > The recovered password was reused for SSH authentication, allowing access as user `adam`.
 {: .prompt-warning }
 
-### SSH Authentication
+### iv. SSH Authentication
 
 The email address in the database suggested the infrastructure user might be named adam. Assuming password reuse between the CMS panel database record and the operating system level, I attempted to connect via SSH.
 
@@ -306,9 +309,9 @@ adam@orion:~$ cat user.txt
 <REDACTED>
 ```
 
-## Privilege Escalation
+## 8. Privilege Escalation
 
-### Local Service Enumeration
+### i. Local Service Enumeration
 
 After gaining SSH access as adam, I audited the network sockets listening on the system to look for internal services. Running ss -tlnp revealed a network service bound exclusively to the local loopback interface (127.0.0.1) on port 23.
 
@@ -337,7 +340,7 @@ The configuration confirmed that incoming connections to 127.0.0.1:23 spawn a Te
 > Port `23` was not exposed externally but was listening locally. This indicated a potentially privileged internal service accessible after obtaining user access.
 {: .prompt-info }
 
-### Vulnerability Identification
+### ii. Vulnerability Identification
 
 Next, I checked the software version of the binary located at /usr/local/sbin/telnetd:
 
@@ -357,7 +360,7 @@ _GNU inetutils telnetd version 2.7 identified as vulnerable to CVE-2026-24061._
 
 A search via Google for a public exploit vector led me to a Proof-of-Concept repository hosted on GitHub: [CVE-2026-24061 by K3ysTr0K3R](https://github.com/K3ysTr0K3R/CVE-2026-24061).
 
-### Exploitation & Root Access
+### iii. Exploitation & Root Access
 
 Because port `23` is restricted to localhost connections, I established an SSH local port forward from my local attack machine. This mapped port `23` on my local loopback interface directly to port `23` on the target machine through the existing SSH session:
 
@@ -385,7 +388,7 @@ root@orion:~# cat /root/root.txt
 
 The target machine was fully compromised.
 
-## Conclusion
+## 9. Conclusion
 
 Orion demonstrated a complete attack chain:
 

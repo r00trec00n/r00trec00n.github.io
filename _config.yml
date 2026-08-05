@@ -225,9 +225,9 @@ exclude:
   - purgecss.js
   - "*.config.js"
   - "package*.json"
-  - .jekyll-cache/
-  - _site/
-  - vendor/
+  - .jekyll-cache
+  - _site
+  - vendor
   - .obsidian
   
 
