@@ -543,7 +543,7 @@ whoami
 ![Exploit Payload Execution for Root](/assets/img/writeups/interpreter/exploit-payload-execution-for-root.png)
 _Exploit Payload Execution For Root_
 
-### Impact
+### v. Impact
 
 The vulnerable implementation of `eval()` allowed an attacker with local access to execute arbitrary Python expressions as the root user.
 
@@ -567,7 +567,7 @@ complete system compromise was achieved.
 
 ## 12. Remediation
 
-### Mirth Connect Remote Code Execution (CVE-2023-43208)
+### i. Mirth Connect Remote Code Execution (CVE-2023-43208)
 
 **Issue:**
 The server was running a vulnerable version of Mirth Connect affected by a known Remote Code Execution vulnerability.
@@ -579,7 +579,7 @@ The server was running a vulnerable version of Mirth Connect affected by a known
 - Monitor exposed administrative services.
 - Apply security updates regularly.
 
-### Sensitive Credential Exposure
+### ii. Sensitive Credential Exposure
 
 **Issue:**
 
@@ -591,7 +591,7 @@ Database credentials were stored inside the Mirth configuration file, allowing l
 - Use proper secrets management solutions.
 - Restrict file permissions on sensitive configuration files.
 
-### Weak Password Policy
+### iii. Weak Password Policy
 
 **Issue:**
 
@@ -603,7 +603,7 @@ Although Mirth Connect used PBKDF2-HMAC-SHA256 password hashing, the recovered p
 - Require complex passwords.
 - Enable multi-factor authentication where possible.
 
-### Python Expression Injection
+### iv. Python Expression Injection
 
 **Issue:**
 
@@ -616,7 +616,7 @@ The notification service used `eval()` to process user-controlled input, resulti
 - Implement strict input validation.
 - Run services with the minimum required privileges.
 
-### Privileged Service Misconfiguration
+### v. Privileged Service Misconfiguration
 
 **Issue:**
 
