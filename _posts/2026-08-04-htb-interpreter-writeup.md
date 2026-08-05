@@ -216,10 +216,8 @@ The exploit was executed against the vulnerable Mirth Connect instance, resultin
 
 ### iii. Reverse Shell
 
-> **Successful Exploitation**
-
-
 ![Successful Exploitation](/assets/img/writeups/interpreter/successful-exploitation.png)
+_Successful Exploitation_
 
 ---
 
@@ -251,19 +249,15 @@ System directories were reviewed to identify application configuration files.
 
 During enumeration, the **conf** directory was located, containing the **mirth.properties** configuration file.
 
-> **Configuration Directory**
-> 
-
 ![Configuration Directory](/assets/img/writeups/interpreter/configuration-directory.png)
+_Configuration Directory_
 
 The configuration file contained the application's database connection information.
-
-> **Database Credentials**
-> 
 
 ![Database Credentials 1](/assets/img/writeups/interpreter/database-credentials-1.png)
 
 ![Database Credentials 2](/assets/img/writeups/interpreter/database-credentials-2.png)
+_Database Credentials_
 
 ---
 
@@ -279,14 +273,12 @@ Inspection of the users table revealed the following account.
 | --- | --- |
 | sedric | u/+LBBOUnadiyFBsMOoIDPLbUR0rk59kEkPU17itdrVWA/kLMt3w+w== |
 
-> **Database User Record**
-> 
-
 ![Database User Record 1](/assets/img/writeups/interpreter/database-user-record-1.png)
 
 ![Database User Record 2](/assets/img/writeups/interpreter/database-user-record-2.png)
 
 ![Database User Record 3](/assets/img/writeups/interpreter/database-user-record-3.png)
+_Database User Record_
 
 ### ii. Password Hash Analysis
 
@@ -324,12 +316,10 @@ The converted hash was then tested against a password dictionary using Hashcat.
 
 ```bash
 hashcat -m 10900 hash.txt /usr/share/wordlists/rockyou.txt --force
-```
-
-> **Hashcat Password Recovery**
-> 
+``` 
 
 ![Hashcat Password Recovery](/assets/img/writeups/interpreter/hashcat-password-recovery.png)
+_Hashcat Password Recovery_
 
 The dictionary attack successfully recovered the plaintext password.
 
@@ -351,10 +341,8 @@ ssh sedric@<target-ip>
 
 Authentication succeeded, providing direct shell access as the **sedric** user.
 
-> **Successful SSH Login**
-> 
-
 ![Successful SSH Login](/assets/img/writeups/interpreter/successful-ssh-login.png)
+_Successful SSH Login_
 
 The user flag was then successfully captured.
 
@@ -375,6 +363,7 @@ The service was bound to:
 ```
 
 ![Internal Services Enumeration](/assets/img/writeups/interpreter/internal-services-enumeration.png)
+_Internal Services Enumeration_
 
 ### ii. Source Code Review
 
