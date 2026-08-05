@@ -1,12 +1,15 @@
 ---
 title: "HTB Orion: CraftCMS RCE to Telnet Privilege Escalation"
+
 date: 2026-08-05 16:00:00 +0500
+
 categories:
   - HTB
   - Linux
   - Easy
+
 tags:
-  - HTB-Linux-Easy
+  - htb-linux-easy
   - htb
   - linux
   - craftcms
@@ -19,6 +22,9 @@ tags:
   - privilege-escalation
   - cve-2025-32432
   - cve-2026-24061
+
+description: Detailed HTB Orion writeup. Exploit CraftCMS RCE (CVE-2025-32432), harvest database credentials, crack bcrypt hashes, and escalate to root via Telnet.
+
 image:
   path: /assets/img/writeups/orion/banner.png
   alt: HTB Orion Writeup
@@ -31,7 +37,7 @@ mermaid: true
 
 | Machine | Orion |
 |---------|-------|
-| Platform | HackTheBox |
+| Platform | [HackTheBox](https://www.hackthebox.com/) |
 | OS | Linux |
 | Difficulty | Easy |
 | Initial Access | CraftCMS RCE |

