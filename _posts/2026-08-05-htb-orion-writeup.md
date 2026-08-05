@@ -25,7 +25,7 @@ tags:
   - cve-2025-32432
   - cve-2026-24061
 
-description: Detailed HTB Orion writeup. Exploit CraftCMS RCE (CVE-2025-32432), harvest database credentials, crack bcrypt hashes, and escalate to root via Telnet.
+description: Detailed Hack The Box Orion writeup. Exploit CraftCMS RCE (CVE-2025-32432), harvest database credentials, crack bcrypt hashes, and escalate to root via Telnet.
 
 image:
   path: /assets/img/writeups/orion/banner.png

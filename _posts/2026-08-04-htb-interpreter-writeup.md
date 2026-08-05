@@ -1,7 +1,7 @@
 ---
-title: "Hack The Box Interpreter Walkthrough | Mirth Connect RCE to Root"
+title: "HTB Interpreter Walkthrough: Mirth Connect RCE to Root"
 
-title_post: "Hack The Box Interpreter Walkthrough | Mirth Connect RCE to Root"
+title_post: "HTB Interpreter Walkthrough: Mirth Connect RCE to Root"
 
 date: 2026-08-04 16:30:00 +0500
 
@@ -20,7 +20,7 @@ tags:
   - python
   - eval-injection
 
-description: Detailed HTB Interpreter walkthrough. Learn how to exploit Mirth Connect (CVE-2023-43208) for RCE, extract database credentials, and escalate to root via Python eval injection.
+description: Detailed Hack The Box Interpreter walkthrough. Learn how to exploit Mirth Connect (CVE-2023-43208) for RCE, extract database credentials, and escalate to root via Python eval injection.
 
 image:
   path: /assets/img/writeups/interpreter/banner.png
