@@ -6,7 +6,7 @@ title: About Me
 title2: Rehan Faisal - Cyber Security
 summary: Personal cybersecurity portfolio featuring penetration testing, Hack The Box writeups, CTFs, and technical notes.
 keywords: cybersecurity,pentesting,hackthebox,ctf,web security,ics,ot-security,cpts
-thumbnail: /assets/img/Pfp-nobg.png
+thumbnail: /assets/img/socail-pics/Pfp-nobg.png
 ---
 
 <style>
@@ -23,7 +23,7 @@ thumbnail: /assets/img/Pfp-nobg.png
 </style>
 
 <div class="text-center my-4">
-  <img src="/assets/img/Pfp-nobg.png"
+  <img src="/assets/img/social-pics/Pfp-nobg.png"
        alt="Rehan Faisal"
        class="img-fluid profile-hover-avatar"
        style="width: 220px; height: 220px; object-fit: cover;">
