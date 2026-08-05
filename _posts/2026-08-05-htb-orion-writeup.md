@@ -196,7 +196,7 @@ I authenticated to the database locally and listed the available databases to fi
 www-data@orion:~$ mysql -u root -p'SuperSecureCraft123Pass!'
 ```
 
-```mariadb
+```plaintext
 MariaDB [(none)]> show databases;
 +--------------------+
 
@@ -214,7 +214,7 @@ MariaDB [(none)]> show databases;
 
 The database named `orion` was the clear target. After switching to this database, I listed the tables to locate the user management data
 
-```mariadb
+```plaintext
 MariaDB [(none)]> use orion;
 Database changed
 
@@ -238,7 +238,7 @@ MariaDB [orion]> show tables;
 
 I queried the users table to extract accounts credentials.
 
-```mariadb
+```plaintext
 MariaDB [orion]> SELECT * from user;
 ERROR 1146 (42S02): Table 'orion.user' doesn't exist
 
