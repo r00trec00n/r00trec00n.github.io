@@ -7,7 +7,8 @@ date: 2026-08-04 16:30:00 +0500
 
 categories:
   - HTB
-  - Writeups
+  - Linux
+  - Medium
 
 tags:
   - htb-linux-medium
