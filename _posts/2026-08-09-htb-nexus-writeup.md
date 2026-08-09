@@ -28,8 +28,6 @@ description: Detailed Hack The Box Nexus writeup. Exploit Krayin CRM RCE (CVE-20
 image:
   path: /assets/img/writeups/nexus/banner.png
   alt: HTB Nexus Writeup
-
-mermaid: true
 ---
 ## 1. Machine Information
 
@@ -145,7 +143,7 @@ DB_PASSWORD=N27xh!!2ucY04
 
 Additionally, inspecting the main landing page of `nexus.htb` revealed an internal email address associated with operations: `j.matthew@nexus.htb`.
 
-![J Matthew Email](/assets/img/writeups/nexus/nexus-email.png)
+![J Matthew Email](/assets/img/writeups/nexus/hr-email.png)
 _Nexus website showing the j.matthew@nexus.htb contact address._
 
 
