@@ -2,7 +2,7 @@
 title: "Building a Dedicated Parrot OS Attack Node"
 date: 2026-08-11 12:00:00 +0500
 categories: [Lab Setup, Parrot OS]
-tags: [parrot-os, xrdp, x11vnc, networking, linux, htb-lab]
+tags: [parrot-os, xrdp, x11vnc, networking, linux, htb-lab, sysadmin, cybersecurity, penetration-testing, lab-setup, grub, bare-metal]
 pin: false
 math: false
 mermaid: false
