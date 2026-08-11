@@ -33,7 +33,7 @@ image:
 |---------|-------|
 | Platform | [Hack The Box](https://www.hackthebox.com/) |
 | OS | Windows Server 2022 |
-| Difficulty | — |
+| Difficulty | Easy |
 | Domain | `retro.vl` |
 | Initial Access | Anonymous SMB + weak `trainee` credentials |
 | Privilege Escalation | AD CS ESC1 |
