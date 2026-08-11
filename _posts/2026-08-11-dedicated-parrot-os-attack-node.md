@@ -26,7 +26,7 @@ The setup covers:
 
 ---
 
-### Lab Environment
+## **Lab Environment**
 
 This setup is part of my personal cybersecurity lab. I use the Parrot OS laptop as a dedicated bare-metal attack node for:
 
@@ -41,16 +41,77 @@ Instead of running Parrot OS inside a VM on my main machine, I moved it to a ded
 
 ---
 
-### 1. Fixing HP UEFI Boot Overrides
+## Fixing HP UEFI Boot Overrides for Parrot OS
 
-Some HP systems may ignore or reset Linux-created UEFI boot entries after a reboot or power cycle. This can result in the system returning to Windows Boot Manager or requiring manual selection through the firmware boot menu.
+Some HP laptops and desktops may ignore or reset Linux NVRAM boot entries created during installation. This can cause the system to bypass GRUB and boot directly into Windows Boot Manager.
 
-One workaround is to place the GRUB EFI binary in the standard UEFI fallback locations.
+There are multiple ways to work around this behavior.
+
+In this guide, I cover **two methods**:
+
+1. **HP Custom Boot Path** — the preferred and non-destructive method.
+2. **UEFI Fallback Path** — an alternative workaround that places GRUB in standard UEFI fallback locations.
+
+> **Note:** I personally used and tested the **Custom Boot Path method** on my HP system. The second method is provided as an alternative for systems where the first method is unavailable or does not work.
+{: .prompt-warning }
+
+### 1.1 Method 1 — HP Custom Boot Path
+
+HP firmware includes a built-in feature called **Custom Boot Path** on some models. This allows you to specify an EFI executable directly from the BIOS/UEFI setup without modifying the Windows EFI bootloader.
+
+#### 1.1.1 Access the HP Firmware Setup
+
+Turn off your system completely.
+
+Power on the machine and repeatedly press **F10** to enter the BIOS/UEFI Setup Utility.
+
+Use the arrow keys to navigate to the **Advanced** or **System Configuration** tab. The exact location may vary depending on the HP model.
+
+#### 1.1.2 Set the Custom Boot Path
+
+Select **Boot Options** and press **Enter**.
+
+Scroll down to **Custom Boot Path** or **Define Custom Boot Path**.
+
+Select **Add** or **Set Custom Boot Path**, then enter the path to the Parrot GRUB binary:
+
+```text
+\EFI\Parrot\grubx64.efi
+```
+
+> **Note:** Use backslashes \ when entering UEFI paths within the HP firmware interface.
+{: .prompt-info }
+
+#### 1.1.3 Adjust the UEFI Boot Order
+
+While still under **Boot Options**, locate the **UEFI Boot Order** section.
+
+Find **Custom Boot** or **UEFI - Custom** in the list.
+
+Move **Custom Boot** to the top of the boot order, usually using **F5/F6 or +/- keys**, depending on the HP firmware version.
+
+This ensures that the custom GRUB entry takes precedence over **Windows Boot Manager**.
+
+Navigate to the Exit tab, select Save Changes and Exit, and press Enter.
+
+#### 1.1.4 How It Works
+
+The HP UEFI firmware maintains an internal setting that points directly to a specified `.efi` executable on the EFI System Partition (ESP).
+
+By pointing the Custom Boot Path to: `\EFI\Parrot\grubx64.efi`
+
+and moving Custom Boot to the top of the UEFI boot order, the firmware can execute GRUB directly during startup.
+
+This approach does not require replacing the standard Windows Boot Manager EFI file.
+
+### 1.2 Method 2 — UEFI Fallback Path
+
+If the Custom Boot Path option is not available on your HP system, another workaround is to place the GRUB EFI binary in the standard UEFI fallback locations.
 
 > **Warning:** The commands below overwrite the Windows Boot Manager EFI path. Only use this approach on a system where you understand the consequences and have appropriate backups.
 {: .prompt-danger }
 
-#### 1.1 Create the EFI Directories
+#### 1.2.1 Create the EFI Directories
 
 ```bash
 sudo mkdir -p /boot/efi/EFI/BOOT
@@ -58,7 +119,7 @@ sudo mkdir -p /boot/efi/EFI/Microsoft/Boot
 
 ```
 
-#### 1.2 Copy the Parrot GRUB Binary
+### 1.2.2 Copy the Parrot GRUB Binary
 
 First, verify that the Parrot EFI files exist:
 
@@ -76,13 +137,13 @@ sudo cp /boot/efi/EFI/Parrot/grubx64.efi \
     /boot/efi/EFI/Microsoft/Boot/bootmgfw.efi
 ```
 
-#### 1.3 Regenerate GRUB
+### 1.2.3 Regenerate GRUB
 
 ```bash
 sudo update-grub
 ```
 
-#### 1.4 How It Works
+### 1.2.4 How It Works
 
 UEFI firmware can use the fallback path:
 
@@ -100,13 +161,13 @@ Placing GRUB at these locations can allow the firmware to launch the Parrot boot
 
 ---
 
-### 2. Configure a Static Network Address
+## 2. Configure a Static Network Address
 
 A stable IP address is useful when remotely managing the attack node from another workstation.
 
 Instead of relying on DHCP to assign a potentially changing address, NetworkManager can be configured with a static IPv4 address.
 
-#### 2.1 Identify the Network Interface
+### 2.1 Identify the Network Interface
 
 ```bash
 ip link
@@ -125,7 +186,7 @@ NAME        DEVICE
 PTCL-BB     eth0
 ```
 
-#### 2.2 Configure the Static Address
+### 2.2 Configure the Static Address
 
 Replace `PTCL-BB` with your actual NetworkManager connection name.
 
@@ -143,13 +204,13 @@ sudo nmcli con mod "PTCL-BB" \
     ipv4.method manual
 ```
 
-#### 2.3 Reactivate the Connection
+### 2.3 Reactivate the Connection
 
 ```bash
 sudo nmcli con up "PTCL-BB"
 ```
 
-#### 2.4 Verify the Configuration
+### 2.4 Verify the Configuration
 
 ```bash
 ip addr show eth0
