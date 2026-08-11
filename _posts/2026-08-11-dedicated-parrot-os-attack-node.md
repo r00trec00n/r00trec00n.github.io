@@ -9,6 +9,7 @@ mermaid: false
 image:
   path: /assets/img/social-pics/Banner.jpeg
   alt: "Parrot OS attack node lab setup with dual monitors"
+
 ---
 
 Transitioning from resource-heavy virtual machines to bare-metal Linux on a secondary laptop provides dedicated hardware performance for penetration testing, CTF challenges, and local lab environments.
