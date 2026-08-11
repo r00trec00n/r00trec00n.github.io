@@ -119,7 +119,7 @@ sudo mkdir -p /boot/efi/EFI/Microsoft/Boot
 
 ```
 
-### 1.2.2 Copy the Parrot GRUB Binary
+#### 1.2.2 Copy the Parrot GRUB Binary
 
 First, verify that the Parrot EFI files exist:
 
@@ -137,13 +137,13 @@ sudo cp /boot/efi/EFI/Parrot/grubx64.efi \
     /boot/efi/EFI/Microsoft/Boot/bootmgfw.efi
 ```
 
-### 1.2.3 Regenerate GRUB
+#### 1.2.3 Regenerate GRUB
 
 ```bash
 sudo update-grub
 ```
 
-### 1.2.4 How It Works
+#### 1.2.4 How It Works
 
 UEFI firmware can use the fallback path:
 
