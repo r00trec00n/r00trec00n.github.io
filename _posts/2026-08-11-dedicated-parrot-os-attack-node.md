@@ -1,9 +1,12 @@
 ---
 title: "Building a Dedicated Parrot OS Attack Node"
+
 date: 2026-08-11 12:00:00 +0500
+
 categories: 
     - Lab Setup
     - Parrot OS
+
 tags:
     - parrot-os
     - xrdp
@@ -17,9 +20,15 @@ tags:
     - lab-setup
     - grub
     - bare-metal
+
 pin: false
+
 math: false
+
 mermaid: false
+
+description: Learn how to build a bare-metal Parrot OS attack node. Fix UEFI boot issues, configure remote desktop mirroring (x11vnc + xrdp), and set up isolated lab networks.
+
 image:
   path: /assets/img/social-pics/Banner.jpeg
   alt: "Parrot OS attack node lab setup with dual monitors"
