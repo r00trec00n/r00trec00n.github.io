@@ -24,7 +24,7 @@ description: HTB Retro writeup covering anonymous SMB enumeration, weak trainee 
 
 image:
   path: /assets/img/writeups/retro/banner.png
-  alt: HTB Retro Writeup
+  alt: HTB Retro Writeup 
 ---
 
 ## 1. Machine Information
