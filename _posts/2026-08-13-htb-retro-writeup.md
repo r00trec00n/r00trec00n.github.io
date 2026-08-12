@@ -18,7 +18,7 @@ tags:
   - esc1
   - certificate-services
   - privilege-escalation
-  - evil-winrm
+  - evil-winrm 
 
 description: HTB Retro writeup covering anonymous SMB enumeration, weak trainee credentials, a pre-created computer account, AD CS ESC1 certificate abuse, Administrator impersonation, and NT hash recovery.
 
