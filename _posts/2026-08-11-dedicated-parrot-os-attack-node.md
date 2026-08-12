@@ -65,7 +65,7 @@ Instead of running Parrot OS inside a VM on my main machine, I moved it to a ded
 
 ---
 
-## Fixing HP UEFI Boot Overrides for Parrot OS
+## 1. Fixing HP UEFI Boot Overrides for Parrot OS
 
 Some HP laptops and desktops may ignore or reset Linux NVRAM boot entries created during installation. This can cause the system to bypass GRUB and boot directly into Windows Boot Manager.
 
