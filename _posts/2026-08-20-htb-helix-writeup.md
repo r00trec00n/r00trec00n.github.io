@@ -393,7 +393,7 @@ Helix stands out because the final privilege escalation requires more than tradi
 
 The initial stages follow a familiar penetration-testing workflow:
 
-```text
+```
 Reconnaissance
     ↓
 VHost Enumeration
@@ -409,7 +409,7 @@ User Pivot
 
 The final stage, however, requires understanding the relationship between an industrial process and the software controlling it:
 
-```text
+```
 OPC UA Access
     ↓
 Writable Process Variables
